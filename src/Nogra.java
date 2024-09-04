@@ -10,15 +10,19 @@
  */
 public class Nogra {
      public static void main (String[] args){
+         
+         
+          Salaries salaries = new Salaries();
+          salaries.manageSalaries();
         
- 
-        
-        
+ //      Products products = new Products();
+  //       Product product = products.inputProductDetails();
+   //      product.viewProduct();
 //       
 //    
-//            Product pr = new Product();
-//            pr.addProduct(1011,"Soap",20,30,20.00);
-//            pr.viewProduct();
+ //           Product pr = new Product();
+ //           pr.addProduct(1011,"Soap",20,30,20.00);
+   //         pr.viewProduct();
 //    
 //        Grades gr = new Grades();
 //////        
