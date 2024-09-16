@@ -1,112 +1,95 @@
 import java.util.Scanner;
+import java.util.regex.Pattern;
+
 
 public class Accounts {
-    Scanner sc = new Scanner(System.in);
-    Account[] acc = new Account[100];
+    Account.Acc[] accountArray;
+    int numberOfAccounts;
+    
+    
+    public void createAccounts() {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter Number of Accounts: ");
+        numberOfAccounts = sc.nextInt();
+        sc.nextLine();  
 
-    public void manageAccounts() {
-        int no, i, id;
-
-        System.out.print("Enter number of Accounts: ");
-        no = sc.nextInt();
-
-        for (i = 0; i < no; i++) {
-            acc[i] = new Account();
-
-            boolean identi;
-            boolean email1;
-            boolean username;
-
-            System.out.println("Enter account Details " + (i + 1) + ": ");
-            while (true) {
-                System.out.print("Enter ID: ");
-                id = sc.nextInt();
-                identi = false;
-
-                for (int x = 0; x < i; x++) {
-                    if (acc[x] != null && acc[x].id == id) {
-                        identi = true;
-                        break;
-                    }
-                }
-
-                if (identi) {
-                    System.out.println(" - ID already exists. Try again -");
-                } else {
-                    acc[i].id = id;
-                    break;
-                }
-            }
-
+        accountArray = new Account.Acc[numberOfAccounts];
+        
+        for (int i = 0; i < numberOfAccounts; i++) {
+            System.out.println("Enter details for Account " + (i + 1) + ":");
+            
             System.out.print("First Name: ");
-            String fname = sc.next();
+            String firstName = sc.nextLine();
+            
             System.out.print("Last Name: ");
-            String lname = sc.next();
-
-            while (true) {
-                System.out.print("Email: ");
-                String email = sc.next();
-                email1 = false;
-
-                for (int x = 0; x < i; x++) {
-                    if (acc[x] != null && acc[x].email.equals(email)) {
-                        email1 = true;
-                        break;
-                    }
-                }
-
-                if (email1) {
-                    System.out.println(" - Email already exists. Try again -");
-                } else {
-                    acc[i].email = email;
-                    break;
-                }
-            }
-
-            while (true) {
-                System.out.print("Username: ");
-                String user = sc.next();
-                username = false;
-
-                for (int x = 0; x < i; x++) {
-                    if (acc[x] != null && acc[x].username.equals(user)) {
-                        username = true;
-                        break;
-                    }
-                }
-
-                if (username) {
-                    System.out.println(" - Username already exists. Try again -");
-                } else {
-                    acc[i].username = user;
-                    break;
-                }
-            }
-
-            boolean passValid = false;
-
-            while (!passValid) {
+            String lastName = sc.nextLine();
+            
+            System.out.print("Email: ");
+            String email = sc.nextLine();
+            
+            System.out.print("Username: ");
+            String username = sc.nextLine();
+            
+            String password;
+            do {
                 System.out.print("Password: ");
-                String password = sc.next();
-
-                if (acc[i].passwordVerify(password)) {
-                    acc[i].addAccount(acc[i].id, fname, lname, acc[i].email, acc[i].username, password);
-                    passValid = true;
-                } else {
-                    System.out.println(" - Invalid password - , Try Again ");
-                }
-            }
-            System.out.println("");
-        }
-
-        System.out.println("Account Details: ");
-        System.out.printf("%-10s %-10s %-10s %-20s %-13s %-10s\n", "ID", "FirstName", "LastName", "Email", "Username", "Password");
-        System.out.println("---------------------------------------------------------------------------------");
-        for (i = 0; i < no; i++) {
-            if (acc[i] != null) {
-                acc[i].viewAccount();
-                System.out.println("");
-            }
+                password = sc.nextLine();
+            } while (validatePasswordWithInt(password) == 0);  
+            
+            accountArray[i] = new Account().new Acc(i + 1, firstName, lastName, email, username, password);
+            System.out.println("Account created successfully!\n");
         }
     }
+    
+   
+    public int validatePasswordWithInt(String password) {
+        if (password.length() < 8) {
+            System.out.println("Password must be at least 8 characters long.");
+            return 0;  
+        }
+        if (!Pattern.compile("[A-Z]").matcher(password).find()) {
+            System.out.println("Password must contain at least one uppercase letter.");
+            return 0;
+        }
+        if (!Pattern.compile("[a-z]").matcher(password).find()) {
+            System.out.println("Password must contain at least one lowercase letter.");
+            return 0;
+        }
+        if (!Pattern.compile("[0-9]").matcher(password).find()) {
+            System.out.println("Password must contain at least one number.");
+            return 0;
+        }
+        if (!Pattern.compile("[^a-zA-Z0-9]").matcher(password).find()) {
+            System.out.println("Password must contain at least one special character.");
+            return 0;
+        }
+        if (password.equalsIgnoreCase("admin") || password.equalsIgnoreCase("password") || password.equals("123")) {
+            System.out.println("Password cannot be a common password such as 'admin', 'password', or '123'.");
+            return 0;
+        }
+        return 1;  
+    }
+
+   
+    public void displayAccounts() {
+       
+        System.out.printf("%-5s %-10s %-10s %-20s %-15s %-10s%n", "ID", "First Name", "Last Name", "Email", "Username", "Password");
+        System.out.println("--------------------------------------------------------------------------------------------");
+        
+      
+        for (int i = 0; i < numberOfAccounts; i++) {
+            Account.Acc account = accountArray[i];
+            System.out.printf("%-5d %-10s %-10s %-20s %-15s %-10s%n",
+                    account.id, account.FirstName, account.LastName, account.Email, account.Username, account.Password);
+    
+    
 }
+
+    
+}
+}
+
+
+
+ 

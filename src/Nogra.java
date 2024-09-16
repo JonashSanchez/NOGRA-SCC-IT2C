@@ -12,8 +12,8 @@ public class Nogra {
      public static void main (String[] args){
          
          
-          Salaries salaries = new Salaries();
-          salaries.manageSalaries();
+//          Salaries salaries = new Salaries();
+//          salaries.manageSalaries();
         
  //      Products products = new Products();
   //       Product product = products.inputProductDetails();
@@ -55,8 +55,12 @@ public class Nogra {
 //        es.Salaries();
 //        
 
-         Accounts accounts = new Accounts();
-          accounts.manageAccounts();
+//        Accounts accounts = new Accounts();
+//        accounts.createAccounts();
+//        accounts.displayAccounts();
+        
+         LoanEvaluator evaluator = new LoanEvaluator();
+          evaluator.evaluateLoan(); 
         
         
         
