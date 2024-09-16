@@ -59,9 +59,7 @@ public class Nogra {
 //        accounts.createAccounts();
 //        accounts.displayAccounts();
         
-         LoanEvaluator evaluator = new LoanEvaluator();
-          evaluator.evaluateLoan(); 
-        
+                 
         
         
     }
