@@ -8,7 +8,7 @@
  *
  * @author Hazel Nogra
  */
-package javaappsecc;
+
 
 public class Grades {
  public   int id;
