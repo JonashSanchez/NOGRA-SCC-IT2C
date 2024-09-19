@@ -39,9 +39,10 @@ public class Nogra {
 //        gr1.addGrades(1002, "John", 2.0, 1.0, 1.0, 1.0);
 //        gr1.viewGrades();
 //
-//      Grade gradeInstance = new Grade();
-//        gradeInstance.genGrade();
+      Grade gradeInstance = new Grade();
+        gradeInstance.genGrade();
 ////
+       
 //       NetPay np = new NetPay();
 //        
 //        
